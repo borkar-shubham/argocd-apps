@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: nginx.local
+    http:
+      paths:
+      - path: /app
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service
+            port:
+              number: 80
+  # - host: www.flipkart.com
+  #   http:
+  #     paths:
+  #     - path: /fasion
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: fasion-service
+  #           port:
+  #             number: 80
