@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cbz-java
+  namespace: dev
+  labels:
+    app: cbz-java
+    tier: backend
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cbz-java
+  template:
+    metadata:
+      labels:
+        app: cbz-java
+    spec:
+      containers:
+        - name: cbz-java
+          image: shubhamborkar/cbz-java:latest
+          ports:
+          - containerPort: 8080
+            name: cbz-java-svc
